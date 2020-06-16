@@ -86,16 +86,12 @@ function App() {
         dispatch,
     }
 
-    const clothes = (
-        <img className="clothes" alt="clothes" src="https://img.icons8.com/emoji/96/000000/womans-clothes.png" />
-    )
+    const clothes = <img className="clothes" alt="clothes" src="/images/icons/clothes.png" />
     const clothesArray: JSX.Element[] = new Array(state.clothes)
     clothesArray.fill(clothes)
 
-    const heart = <img alt="heart" className="heart" src="https://img.icons8.com/plasticine/100/000000/like--v1.png" />
-    const emptyHeart = (
-        <img alt="empty-heart" className="heart" src="https://img.icons8.com/plasticine/100/000000/like--v2.png" />
-    )
+    const heart = <img alt="heart" className="heart" src="/images/icons/heart.png" />
+    const emptyHeart = <img alt="empty-heart" className="heart" src="/images/icons/heart-empty.png" />
     const heartArray: JSX.Element[] = new Array(defaultState.heart)
     heartArray.fill(heart, 0, state.heart)
     heartArray.fill(emptyHeart, state.heart)
