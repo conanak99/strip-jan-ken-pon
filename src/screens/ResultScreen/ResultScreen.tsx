@@ -15,7 +15,7 @@ export const ResultScreen = () => {
     let result: JSX.Element = <span />
     switch (matchResult!) {
         case MatchResult.WIN:
-            result = <span className="nes-text is-success"> Thắng rồi ahihi!!</span>
+            result = <span className="nes-text is-success">Thắng rồi ahihi!!</span>
             break
         case MatchResult.DRAW:
             result = <span className="nes-text is-primary"> Hoà</span>
