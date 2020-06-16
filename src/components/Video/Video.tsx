@@ -39,7 +39,7 @@ export const Video = ({play, videoUrl, onVideoEnded}: Props) => {
     }, [play, videoRef])
 
     return (
-        <StyledVideo key={videoUrl} ref={videoRef as any} onEnded={onVideoEnded}>
+        <StyledVideo key={videoUrl} ref={videoRef as any} onEnded={onVideoEnded} preload="auto">
             <source src={videoUrl} type="video/mp4" />
         </StyledVideo>
     )
