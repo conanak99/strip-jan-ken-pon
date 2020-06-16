@@ -1,59 +1,8 @@
 import React from 'react'
-import './App.css'
-
-enum GameScreen {
-    CHOICE,
-    RESULT,
-    STRIP_VIDEO,
-    GAME_OVER,
-}
-
-enum Choice {
-    ROCK = 0,
-    PAPER = 1,
-    SCISSOR = 2,
-}
-
-enum MatchResult {
-    WIN,
-    LOSE,
-    DRAW,
-}
-
-interface GameState {
-    heart: number
-    clothes: number
-
-    screen: GameScreen
-    videoUrl: string
-
-    playerChoice?: Choice
-    botChoice?: Choice
-    matchResult?: MatchResult
-}
-
-enum ActionType {
-    CHOICE,
-    CALCULATE,
-
-    SKIP,
-    RESTART,
-}
-type Action =
-    | {
-          type: ActionType.CHOICE
-          choice: Choice
-      }
-    | {type: ActionType.SKIP}
-    | {type: ActionType.RESTART}
-    | {type: ActionType.CALCULATE}
-
-const defaultState: GameState = {
-    heart: 5,
-    clothes: 3,
-    screen: GameScreen.CHOICE,
-    videoUrl: '',
-}
+import './App.scss'
+import {GameState, GameScreen, Choice, MatchResult, Action, ActionType} from '../model'
+import {defaultState, ContextValue, AppContext} from '../context'
+import {ChoiceScreen} from '../Screens/ChoiceScreen/ChoiceScreen'
 
 function getBotChoice() {
     const choices = [Choice.PAPER, Choice.ROCK, Choice.SCISSOR]
@@ -86,6 +35,10 @@ function gameLogicReducer(state: GameState, action: Action): GameState {
             return {...state, playerChoice, botChoice, matchResult, screen: GameScreen.RESULT}
         }
         case ActionType.CALCULATE:
+            if (state.screen !== GameScreen.RESULT) {
+                return state
+            }
+
             const matchResult = state.matchResult
             switch (matchResult) {
                 case MatchResult.WIN:
@@ -101,32 +54,44 @@ function gameLogicReducer(state: GameState, action: Action): GameState {
                 case MatchResult.DRAW:
                     return {...state, screen: GameScreen.CHOICE}
             }
-        default:
-            return state
     }
+
+    return state
 }
 
 function App() {
     const [state, dispatch] = React.useReducer(gameLogicReducer, defaultState)
 
-    const select = (choice: Choice) => {
-        dispatch({type: ActionType.CHOICE, choice})
-
-        setTimeout(() => {
-            dispatch({type: ActionType.CALCULATE})
-        }, 5000)
+    const context: ContextValue = {
+        state,
+        dispatch,
     }
 
-    return (
-        <div>
-            <code>{JSON.stringify(state, null, 2)}</code>
+    const clothes = (
+        <img className="clothes" alt="clothes" src="https://img.icons8.com/emoji/96/000000/womans-clothes.png" />
+    )
+    const clothesArray: JSX.Element[] = new Array(state.clothes)
+    clothesArray.fill(clothes)
 
-            <div>
-                <button onClick={() => select(Choice.ROCK)}>ROCK</button>
-                <button onClick={() => select(Choice.PAPER)}>PAPER</button>
-                <button onClick={() => select(Choice.SCISSOR)}>SCISSOR</button>
+    const heart = <img alt="heart" className="heart" src="https://img.icons8.com/plasticine/100/000000/like--v1.png" />
+    const emptyHeart = (
+        <img alt="empty-heart" className="heart" src="https://img.icons8.com/plasticine/100/000000/like--v2.png" />
+    )
+    const heartArray: JSX.Element[] = new Array(defaultState.heart)
+    heartArray.fill(heart, 0, state.heart)
+    heartArray.fill(emptyHeart, state.heart)
+
+    return (
+        <AppContext.Provider value={context}>
+            <div className="container">
+                <div className="clothes-section">{clothesArray}</div>
+                <div className="heart-section">{heartArray}</div>
+
+                <code>{JSON.stringify(state, null, 2)}</code>
+
+                {state.screen === GameScreen.CHOICE && <ChoiceScreen />}
             </div>
-        </div>
+        </AppContext.Provider>
     )
 }
 

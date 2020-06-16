@@ -1,0 +1,62 @@
+.container {
+    position: relative;
+    height: 100vh;
+    background-image: url('https://cdn-0.airwallpaper.com/wp-content/uploads/wall001/Beautiful-Cute-For-Girls-Background-1.jpg');
+}
+
+.heart-section {
+    position: absolute;
+    top: -6px;
+    left: 5px;
+
+    .heart {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+.clothes-section {
+    position: absolute;
+    top: 0;
+    right: 5px;
+
+    .clothes {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+.choices {
+    position: absolute;
+    width: 100vw;
+    bottom: 10vh;
+    text-align: center;
+
+    button {
+        opacity: 0.8;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        transition: all 0.5s;
+
+        &:hover {
+            opacity: 1;
+            transform: translateY(-10px) scale(1.2);
+        }
+
+        img {
+            width: 120px;
+            height: 120px;
+        }
+
+        &.rock img {
+            transform: rotate(-15deg);
+        }
+        &.scissor img {
+            transform: rotate(-80deg);
+        }
+        &.paper img {
+            transform: rotate(15deg);
+        }
+    }
+}
