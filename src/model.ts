@@ -23,7 +23,7 @@ export interface GameState {
     clothes: number
 
     screen: GameScreen
-    videoUrl: string
+    videoNumber: number
 
     playerChoice?: Choice
     botChoice?: Choice

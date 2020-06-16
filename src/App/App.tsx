@@ -12,7 +12,7 @@ function getBotChoice() {
     // return Choice.PAPER // For easy testing
 
     const choices = [Choice.PAPER, Choice.ROCK, Choice.SCISSOR]
-    return choices[Math.ceil(Math.random() * choices.length)]
+    return choices[Math.floor(Math.random() * choices.length)]
 }
 
 function getMatchResult(playerChoice: Choice, botChoice: Choice) {
@@ -36,9 +36,7 @@ function gameLogicReducer(state: GameState, action: Action): GameState {
             if (state.clothes === 0) {
                 return {...state, screen: GameScreen.GAME_OVER_WIN}
             }
-
-            const videoUrl = `/videos/${state.clothes}.mp4`
-            return {...state, videoUrl, screen: GameScreen.CHOICE}
+            return {...state, videoNumber: state.clothes, screen: GameScreen.CHOICE}
 
         case ActionType.CHOICE: {
             const playerChoice = action.choice
@@ -101,7 +99,7 @@ function App() {
 
                 <Video
                     play={state.screen === GameScreen.STRIP_VIDEO}
-                    videoUrl={state.videoUrl}
+                    videoNumber={state.videoNumber}
                     onVideoEnded={() => dispatch({type: ActionType.NEXT_ROUND})}></Video>
 
                 {state.screen === GameScreen.CHOICE && <ChoiceScreen />}

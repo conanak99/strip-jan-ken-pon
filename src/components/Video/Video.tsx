@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 interface Props {
     play?: boolean
-    videoUrl: string
+    videoNumber: number
     onVideoEnded: () => void
 }
 
@@ -18,7 +18,7 @@ const StyledVideo = styled.video`
     z-index: -1;
 `
 
-export const Video = ({play, videoUrl, onVideoEnded}: Props) => {
+export const Video = ({play, videoNumber, onVideoEnded}: Props) => {
     const videoRef = React.useRef<HTMLVideoElement | null>(null)
 
     React.useEffect(() => {
@@ -39,8 +39,13 @@ export const Video = ({play, videoUrl, onVideoEnded}: Props) => {
     }, [play, videoRef])
 
     return (
-        <StyledVideo key={videoUrl} ref={videoRef as any} onEnded={onVideoEnded} preload="auto">
-            <source src={videoUrl} type="video/mp4" />
+        <StyledVideo
+            key={videoNumber}
+            ref={videoRef as any}
+            poster={`/images/preview_${videoNumber}.jpg`}
+            onEnded={onVideoEnded}
+            preload="auto">
+            <source src={`/videos/${videoNumber}.mp4`} type="video/mp4" />
         </StyledVideo>
     )
 }
