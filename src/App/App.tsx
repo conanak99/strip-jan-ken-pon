@@ -9,7 +9,10 @@ import {Video} from '../components/Video/Video'
 import {Container, ClothesSection, HeartSection} from './App.style'
 
 function getBotChoice() {
-    return Choice.PAPER // For easy testing
+    // return Choice.PAPER // For easy testing
+
+    const choices = [Choice.PAPER, Choice.ROCK, Choice.SCISSOR]
+    return choices[Math.ceil(Math.random() * choices.length)]
 }
 
 function getMatchResult(playerChoice: Choice, botChoice: Choice) {
