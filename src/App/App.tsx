@@ -4,9 +4,9 @@ import {defaultState, ContextValue, AppContext} from '../context'
 import {ChoiceScreen} from '../screens/ChoiceScreen/ChoiceScreen'
 import {ResultScreen} from '../screens/ResultScreen/ResultScreen'
 import {VideoScreen} from '../screens/VideoScreen/VideoScreen'
+import {GameOverScreen} from '../screens/GameOverScreen/GameOverScreen'
 import {Video} from '../components/Video/Video'
 import {Container, ClothesSection, HeartSection} from './App.style'
-import {GameOverScreen} from '../screens/GameOverScreen/GameOverScreen'
 
 function getBotChoice() {
     return Choice.PAPER // For easy testing

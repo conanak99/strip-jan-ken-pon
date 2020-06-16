@@ -1,11 +1,14 @@
 import {GameState, GameScreen, Action} from './model'
 import React from 'react'
 
+const TOTAL_CLOTHES = 4
+const TOTAL_HEART = 3
+
 export const defaultState: GameState = {
-    heart: 5,
-    clothes: 3,
+    heart: TOTAL_HEART,
+    clothes: TOTAL_CLOTHES,
     screen: GameScreen.CHOICE,
-    videoUrl: '/videos/3.mp4',
+    videoUrl: `/videos/${TOTAL_CLOTHES}.mp4`,
 }
 
 export interface ContextValue {
