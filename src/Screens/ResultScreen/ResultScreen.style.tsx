@@ -13,7 +13,7 @@ export const BotChoice = styled.div`
 `
 export const ResultContainer = styled.div`
     margin: 20px;
-    font-size: 40px;
+    font-size: 44px;
 `
 export const PlayerChoice = styled.div`
     margin-bottom: 32px;

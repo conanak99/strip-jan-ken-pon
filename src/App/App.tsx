@@ -8,6 +8,12 @@ import {GameOverScreen} from '../screens/GameOverScreen/GameOverScreen'
 import {Video} from '../components/Video/Video'
 import {Container, ClothesSection, HeartSection} from './App.style'
 
+const audios: Record<MatchResult, HTMLAudioElement> = {
+    [MatchResult.WIN]: new Audio('/sounds/win.mp3'),
+    [MatchResult.DRAW]: new Audio('/sounds/draw.mp3'),
+    [MatchResult.LOSE]: new Audio('/sounds/lose.mp3'),
+}
+
 function getBotChoice() {
     // return Choice.PAPER // For easy testing
 
@@ -42,6 +48,8 @@ function gameLogicReducer(state: GameState, action: Action): GameState {
             const playerChoice = action.choice
             const botChoice = getBotChoice()
             const matchResult = getMatchResult(playerChoice, botChoice)
+            const audio = audios[matchResult]
+            audio && audio.play()
 
             return {...state, playerChoice, botChoice, matchResult, screen: GameScreen.RESULT}
         }
@@ -52,6 +60,7 @@ function gameLogicReducer(state: GameState, action: Action): GameState {
             }
 
             const matchResult = state.matchResult
+
             switch (matchResult) {
                 case MatchResult.WIN:
                     const clothes = state.clothes - 1
