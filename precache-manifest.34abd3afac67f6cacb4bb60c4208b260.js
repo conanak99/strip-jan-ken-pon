@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d8439cf71b6e4d18ce67205d0cdbcf31",
+    "revision": "137fafb5a0de88deeaf220879d955922",
     "url": "http://strip.toidicodedao.com/index.html"
   },
   {
-    "revision": "bd87175e9e6011544a40",
+    "revision": "a13f20f08f5ee1ff969f",
     "url": "http://strip.toidicodedao.com/static/css/main.7efd0747.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "http://strip.toidicodedao.com/static/js/2.d3567cb1.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bd87175e9e6011544a40",
-    "url": "http://strip.toidicodedao.com/static/js/main.09ef6a59.chunk.js"
+    "revision": "a13f20f08f5ee1ff969f",
+    "url": "http://strip.toidicodedao.com/static/js/main.63da77f8.chunk.js"
   },
   {
     "revision": "d7e7405160fdf6c11c6e",
