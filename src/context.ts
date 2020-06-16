@@ -5,7 +5,7 @@ export const defaultState: GameState = {
     heart: 5,
     clothes: 3,
     screen: GameScreen.CHOICE,
-    videoUrl: '',
+    videoUrl: '/videos/3.mp4',
 }
 
 export interface ContextValue {

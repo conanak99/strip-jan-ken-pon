@@ -1,12 +1,15 @@
 import React from 'react'
-import './App.scss'
 import {GameState, GameScreen, Choice, MatchResult, Action, ActionType} from '../model'
 import {defaultState, ContextValue, AppContext} from '../context'
-import {ChoiceScreen} from '../Screens/ChoiceScreen/ChoiceScreen'
+import {ChoiceScreen} from '../screens/ChoiceScreen/ChoiceScreen'
+import {ResultScreen} from '../screens/ResultScreen/ResultScreen'
+import {VideoScreen} from '../screens/VideoScreen/VideoScreen'
+import {Video} from '../components/Video/Video'
+import {Container, ClothesSection, HeartSection} from './App.style'
+import {GameOverScreen} from '../screens/GameOverScreen/GameOverScreen'
 
 function getBotChoice() {
-    const choices = [Choice.PAPER, Choice.ROCK, Choice.SCISSOR]
-    return choices[Math.floor(Math.random() * choices.length)]
+    return Choice.PAPER // For easy testing
 }
 
 function getMatchResult(playerChoice: Choice, botChoice: Choice) {
@@ -25,8 +28,15 @@ function gameLogicReducer(state: GameState, action: Action): GameState {
     switch (action.type) {
         case ActionType.RESTART:
             return defaultState
-        case ActionType.SKIP:
-            return {...state, screen: GameScreen.CHOICE}
+
+        case ActionType.NEXT_ROUND:
+            if (state.clothes === 0) {
+                return {...state, screen: GameScreen.GAME_OVER_WIN}
+            }
+
+            const videoUrl = `/videos/${state.clothes}.mp4`
+            return {...state, videoUrl, screen: GameScreen.CHOICE}
+
         case ActionType.CHOICE: {
             const playerChoice = action.choice
             const botChoice = getBotChoice()
@@ -34,6 +44,7 @@ function gameLogicReducer(state: GameState, action: Action): GameState {
 
             return {...state, playerChoice, botChoice, matchResult, screen: GameScreen.RESULT}
         }
+
         case ActionType.CALCULATE:
             if (state.screen !== GameScreen.RESULT) {
                 return state
@@ -43,19 +54,17 @@ function gameLogicReducer(state: GameState, action: Action): GameState {
             switch (matchResult) {
                 case MatchResult.WIN:
                     const clothes = state.clothes - 1
-                    const videoUrl = `/strip_video/${clothes}`
-                    return {...state, clothes, videoUrl, screen: GameScreen.STRIP_VIDEO}
+                    return {...state, clothes, screen: GameScreen.STRIP_VIDEO}
                 case MatchResult.LOSE:
                     const heart = state.heart - 1
                     if (heart === 0) {
-                        return {...state, heart, screen: GameScreen.GAME_OVER}
+                        return {...state, heart, screen: GameScreen.GAME_OVER_LOSE}
                     }
                     return {...state, heart, screen: GameScreen.CHOICE}
                 case MatchResult.DRAW:
                     return {...state, screen: GameScreen.CHOICE}
             }
     }
-
     return state
 }
 
@@ -83,14 +92,22 @@ function App() {
 
     return (
         <AppContext.Provider value={context}>
-            <div className="container">
-                <div className="clothes-section">{clothesArray}</div>
-                <div className="heart-section">{heartArray}</div>
+            <Container>
+                <ClothesSection>{clothesArray}</ClothesSection>
+                <HeartSection>{heartArray}</HeartSection>
 
-                <code>{JSON.stringify(state, null, 2)}</code>
+                <Video
+                    play={state.screen === GameScreen.STRIP_VIDEO}
+                    videoUrl={state.videoUrl}
+                    onVideoEnded={() => dispatch({type: ActionType.NEXT_ROUND})}></Video>
 
                 {state.screen === GameScreen.CHOICE && <ChoiceScreen />}
-            </div>
+                {state.screen === GameScreen.RESULT && <ResultScreen />}
+                {state.screen === GameScreen.STRIP_VIDEO && <VideoScreen />}
+
+                {state.screen === GameScreen.GAME_OVER_WIN && <GameOverScreen screen={state.screen} />}
+                {state.screen === GameScreen.GAME_OVER_LOSE && <GameOverScreen screen={state.screen} />}
+            </Container>
         </AppContext.Provider>
     )
 }

@@ -1,0 +1,41 @@
+import React from 'react'
+import styled from 'styled-components'
+import {Choice} from '../../model'
+
+const RotatedImg = styled.img<{rotate: number; size: number}>`
+    width: ${(props) => props.size}px;
+    height: ${(props) => props.size}px;
+    transform: rotate(${(props) => props.rotate}deg);
+`
+
+export const ChoiceImg = ({choice, size = 120}: {choice: Choice; size?: number}) => {
+    switch (choice) {
+        case Choice.ROCK:
+            return (
+                <RotatedImg
+                    rotate={-15}
+                    size={size}
+                    alt="rock"
+                    src="https://img.icons8.com/color/96/000000/clenched-fist.png"
+                />
+            )
+        case Choice.SCISSOR:
+            return (
+                <RotatedImg
+                    rotate={-80}
+                    size={size}
+                    alt="paper"
+                    src="https://img.icons8.com/color/96/000000/hand-scissors.png"
+                />
+            )
+        case Choice.PAPER:
+            return (
+                <RotatedImg
+                    rotate={15}
+                    size={size}
+                    alt="scissor"
+                    src="https://img.icons8.com/color/96/000000/hand.png"
+                />
+            )
+    }
+}

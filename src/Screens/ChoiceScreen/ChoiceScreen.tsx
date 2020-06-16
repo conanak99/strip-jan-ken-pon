@@ -1,7 +1,9 @@
 import React from 'react'
-import './ChoiceScreen.scss'
 import {Choice, ActionType} from '../../model'
 import {AppContext} from '../../context'
+import {ChoiceImg} from '../../components/ChoiceImg/ChoiceImg'
+
+import {Container, Choices, ChoiceButton} from './ChoiceScreen.style'
 
 export const ChoiceScreen = () => {
     const {dispatch} = React.useContext(AppContext)
@@ -9,27 +11,19 @@ export const ChoiceScreen = () => {
     const select = React.useCallback(
         (choice: Choice) => {
             dispatch({type: ActionType.CHOICE, choice})
-
-            setTimeout(() => {
-                dispatch({type: ActionType.CALCULATE})
-            }, 5000)
         },
         [dispatch],
     )
 
     return (
-        <div>
-            <div className="choices">
-                <button className="rock" onClick={() => select(Choice.ROCK)}>
-                    <img alt="rock" src="https://img.icons8.com/color/96/000000/clenched-fist.png" />
-                </button>
-                <button className="scissor" onClick={() => select(Choice.SCISSOR)}>
-                    <img alt="paper" src="https://img.icons8.com/color/96/000000/hand-scissors.png" />
-                </button>
-                <button className="paper" onClick={() => select(Choice.PAPER)}>
-                    <img alt="scissor" src="https://img.icons8.com/color/96/000000/hand.png" />
-                </button>
-            </div>
-        </div>
+        <Container>
+            <Choices>
+                {[Choice.ROCK, Choice.SCISSOR, Choice.PAPER].map((choice) => (
+                    <ChoiceButton key={choice} onClick={() => select(choice)}>
+                        <ChoiceImg choice={choice} />
+                    </ChoiceButton>
+                ))}
+            </Choices>
+        </Container>
     )
 }

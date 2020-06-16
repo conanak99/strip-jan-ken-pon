@@ -2,7 +2,8 @@ export enum GameScreen {
     CHOICE,
     RESULT,
     STRIP_VIDEO,
-    GAME_OVER,
+    GAME_OVER_LOSE,
+    GAME_OVER_WIN,
 }
 
 export enum Choice {
@@ -33,7 +34,7 @@ export enum ActionType {
     CHOICE,
     CALCULATE,
 
-    SKIP,
+    NEXT_ROUND,
     RESTART,
 }
 
@@ -42,6 +43,6 @@ export type Action =
           type: ActionType.CHOICE
           choice: Choice
       }
-    | {type: ActionType.SKIP}
+    | {type: ActionType.NEXT_ROUND}
     | {type: ActionType.RESTART}
     | {type: ActionType.CALCULATE}
