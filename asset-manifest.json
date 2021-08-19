@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "https://strip.toidicodedao.com/static/css/main.7efd0747.chunk.css",
-    "main.js": "https://strip.toidicodedao.com/static/js/main.41e09178.chunk.js",
-    "main.js.map": "https://strip.toidicodedao.com/static/js/main.41e09178.chunk.js.map",
+    "main.js": "https://strip.toidicodedao.com/static/js/main.1162ec70.chunk.js",
+    "main.js.map": "https://strip.toidicodedao.com/static/js/main.1162ec70.chunk.js.map",
     "runtime-main.js": "https://strip.toidicodedao.com/static/js/runtime-main.5a2f41d7.js",
     "runtime-main.js.map": "https://strip.toidicodedao.com/static/js/runtime-main.5a2f41d7.js.map",
     "static/js/2.4f5f18ef.chunk.js": "https://strip.toidicodedao.com/static/js/2.4f5f18ef.chunk.js",
     "static/js/2.4f5f18ef.chunk.js.map": "https://strip.toidicodedao.com/static/js/2.4f5f18ef.chunk.js.map",
     "index.html": "https://strip.toidicodedao.com/index.html",
-    "precache-manifest.f07eba41fc64d6789bcf4e64b2d9f56e.js": "https://strip.toidicodedao.com/precache-manifest.f07eba41fc64d6789bcf4e64b2d9f56e.js",
+    "precache-manifest.a11ab560ef72d21b7ea3c6e10097411e.js": "https://strip.toidicodedao.com/precache-manifest.a11ab560ef72d21b7ea3c6e10097411e.js",
     "service-worker.js": "https://strip.toidicodedao.com/service-worker.js",
     "static/css/main.7efd0747.chunk.css.map": "https://strip.toidicodedao.com/static/css/main.7efd0747.chunk.css.map",
     "static/js/2.4f5f18ef.chunk.js.LICENSE.txt": "https://strip.toidicodedao.com/static/js/2.4f5f18ef.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.5a2f41d7.js",
     "static/js/2.4f5f18ef.chunk.js",
     "static/css/main.7efd0747.chunk.css",
-    "static/js/main.41e09178.chunk.js"
+    "static/js/main.1162ec70.chunk.js"
   ]
 }
