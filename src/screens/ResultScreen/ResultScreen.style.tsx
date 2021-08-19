@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {TABLET_BREAKPOINT} from '../../config'
 
 export const Container = styled.div`
     height: 100vh;
@@ -14,6 +15,10 @@ export const BotChoice = styled.div`
 export const ResultContainer = styled.div`
     margin: 20px;
     font-size: 44px;
+
+    ${TABLET_BREAKPOINT} {
+        margin: 10px;
+    }
 `
 export const PlayerChoice = styled.div`
     margin-bottom: 32px;

@@ -1,9 +1,9 @@
 import styled from 'styled-components'
+import {TABLET_BREAKPOINT} from '../../config'
 
 export const Container = styled.div`
     position: relative;
     height: 100vh;
-    /* background-image: url('/images/bg.jpg'); */
 `
 
 export const Choices = styled.div`
@@ -23,5 +23,8 @@ export const ChoiceButton = styled.button`
     &:hover {
         opacity: 1;
         transform: translateY(-10px) scale(1.2);
+    }
+
+    ${TABLET_BREAKPOINT} {
     }
 `

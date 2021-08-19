@@ -24,7 +24,7 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "deploy": "PUBLIC_URL=http://strip.toidicodedao.com yarn build && cp CNAME build/CNAME && gh-pages -d build"
+        "deploy": "PUBLIC_URL=https://strip.toidicodedao.com yarn build && cp CNAME build/CNAME && gh-pages -d build"
     },
     "eslintConfig": {
         "extends": "react-app"

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {TABLET_BREAKPOINT} from '../config'
 
 export const Container = styled.div`
     position: relative;
@@ -11,6 +12,10 @@ export const HeartSection = styled.div`
     top: 5px;
     left: 5px;
 
+    ${TABLET_BREAKPOINT} {
+        width: 40vw;
+    }
+
     .heart {
         width: 55px;
         height: 55px;
@@ -22,6 +27,11 @@ export const ClothesSection = styled.div`
     position: absolute;
     top: 5px;
     right: 5px;
+    text-align: right;
+
+    ${TABLET_BREAKPOINT} {
+        width: 40vw;
+    }
 
     .clothes {
         width: 60px;
