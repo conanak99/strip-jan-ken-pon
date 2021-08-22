@@ -22,8 +22,11 @@ jobs:
             - name: Install NPM packages
               run: yarn install
 
-            - name: Build project
+            - name: Build Project
               run: yarn build
 
-            - name: Deploy to gh-pages
-              run: yarn deploy
+            - name: Deploy 🚀
+              uses: JamesIves/github-pages-deploy-action@4.1.4
+              with:
+                  branch: gh-pages # The branch the action should deploy to.
+                  folder: build # The folder the action should deploy.
