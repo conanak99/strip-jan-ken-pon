@@ -13,7 +13,20 @@ const StyledVideo = styled.video`
     left: 0;
     width: 100vw;
     height: 100vh;
-    opacity: 0.75;
+    height: calc(var(--vh, 1vh) * 100);
+    opacity: 0.8;
+    object-fit: cover;
+    z-index: -1;
+`
+
+const Preview = styled.img`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    opacity: 0.8;
     object-fit: cover;
     z-index: -1;
 `
@@ -24,27 +37,20 @@ export const Video = ({play, videoNumber, onVideoEnded}: Props) => {
     React.useEffect(() => {
         const video = videoRef.current
         if (video) {
+            console.log({video})
             video.currentTime = 0
-
-            if (play) {
-                video.play()
-            }
-        }
-
-        return () => {
-            if (video) {
-                video.pause()
-            }
+            // Later, sound might not work on Safari mobile due to permission
+            // Dunno why it can work now, lol
+            video.muted = false
         }
     }, [play, videoRef])
 
+    if (!play) {
+        return <Preview src={`/images/preview_${videoNumber}.jpg`} />
+    }
+
     return (
-        <StyledVideo
-            key={videoNumber}
-            ref={videoRef as any}
-            poster={`/images/preview_${videoNumber}.jpg`}
-            onEnded={onVideoEnded}
-            preload="auto">
+        <StyledVideo ref={videoRef as any} onEnded={onVideoEnded} playsInline autoPlay muted>
             <source src={`/videos/${videoNumber}.mp4`} type="video/mp4" />
         </StyledVideo>
     )

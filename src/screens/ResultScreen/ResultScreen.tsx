@@ -28,13 +28,13 @@ export const ResultScreen = () => {
     return (
         <Container>
             <BotChoice>
-                <ChoiceImg size={200} choice={botChoice!} />
+                <ChoiceImg size={140} choice={botChoice!} />
             </BotChoice>
 
             <ResultContainer>{result}</ResultContainer>
 
             <PlayerChoice>
-                <ChoiceImg size={200} choice={playerChoice!} />
+                <ChoiceImg size={140} choice={playerChoice!} />
             </PlayerChoice>
 
             <button onClick={next} type="button" className="nes-btn is-primary">

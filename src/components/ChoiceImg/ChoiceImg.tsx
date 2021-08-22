@@ -8,7 +8,7 @@ const RotatedImg = styled.img<{rotate: number; size: number}>`
     transform: rotate(${(props) => props.rotate}deg);
 `
 
-export const ChoiceImg = ({choice, size = 100}: {choice: Choice; size?: number}) => {
+export const ChoiceImg = ({choice, size = 120}: {choice: Choice; size?: number}) => {
     switch (choice) {
         case Choice.ROCK:
             return <RotatedImg rotate={-15} size={size} alt="rock" src="/images/icons/rock.png" />
