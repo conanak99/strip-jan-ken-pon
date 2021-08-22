@@ -1,0 +1,29 @@
+name: Build & deploy
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    build:
+        name: Build and Deploy
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Install Node.js
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 13.x
+
+            - name: Install NPM packages
+              run: npm ci
+
+            - name: Build project
+              run: npm run build
+
+            - name: Deploy to gh-pages
+              run: npm run deploy
