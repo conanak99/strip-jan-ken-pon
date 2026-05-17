@@ -1,9 +1,8 @@
 import React from 'react'
-
-import {AppContext} from '../../context'
 import {ChoiceImg} from '../../components/ChoiceImg/ChoiceImg'
-import {MatchResult, ActionType} from '../../model'
-import {BotChoice, ResultContainer, PlayerChoice, Container} from './ResultScreen.style'
+import {AppContext} from '../../context'
+import {ActionType, MatchResult} from '../../model'
+import {BotChoice, Container, PlayerChoice, ResultContainer} from './ResultScreen.style'
 
 export const ResultScreen = () => {
     const {state, dispatch} = React.useContext(AppContext)
@@ -12,7 +11,7 @@ export const ResultScreen = () => {
 
     const next = React.useCallback(() => dispatch({type: ActionType.CALCULATE}), [dispatch])
 
-    let result: JSX.Element = <span />
+    let result: React.JSX.Element = <span />
     switch (matchResult!) {
         case MatchResult.WIN:
             result = <span className="nes-text is-success">Thắng rồi ahihi!!</span>

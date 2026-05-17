@@ -1,13 +1,12 @@
 body {
-  margin: 0;
-  font-family: 'Patrick Hand SC', cursive;
-  font-weight: 600;
-  font-size: 28px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: "Patrick Hand SC", cursive;
+    font-weight: 600;
+    font-size: 28px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
