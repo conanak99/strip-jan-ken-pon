@@ -12,21 +12,25 @@ jobs:
 
         steps:
             - name: Checkout code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
 
             - name: Install Node.js
-              uses: actions/setup-node@v2
+              uses: actions/setup-node@v4
               with:
-                  node-version: 13.x
+                  node-version: 22.x
+                  cache: yarn
 
             - name: Install NPM packages
-              run: yarn install
+              run: yarn install --frozen-lockfile
+
+            - name: Lint
+              run: yarn lint
 
             - name: Build Project
               run: yarn build-prod
 
             - name: Deploy 🚀
-              uses: JamesIves/github-pages-deploy-action@4.1.4
+              uses: JamesIves/github-pages-deploy-action@v4
               with:
-                  branch: gh-pages # The branch the action should deploy to.
-                  folder: build # The folder the action should deploy.
+                  branch: gh-pages
+                  folder: build

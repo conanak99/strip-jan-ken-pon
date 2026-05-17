@@ -1,9 +1,9 @@
 import React from 'react'
-import {Choice, ActionType} from '../../model'
-import {AppContext} from '../../context'
 import {ChoiceImg} from '../../components/ChoiceImg/ChoiceImg'
+import {AppContext} from '../../context'
+import {ActionType, Choice} from '../../model'
 
-import {Container, Choices, ChoiceButton} from './ChoiceScreen.style'
+import {ChoiceButton, Choices, Container} from './ChoiceScreen.style'
 
 export const ChoiceScreen = () => {
     const {dispatch} = React.useContext(AppContext)

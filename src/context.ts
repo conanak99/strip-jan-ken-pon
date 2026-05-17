@@ -1,5 +1,5 @@
-import {GameState, GameScreen, Action} from './model'
 import React from 'react'
+import {type Action, GameScreen, type GameState} from './model'
 
 const TOTAL_CLOTHES = 4
 const TOTAL_HEART = 4
@@ -18,7 +18,7 @@ export interface ContextValue {
 
 const defaultContextValue: ContextValue = {
     state: defaultState,
-    dispatch: () => {},
+    dispatch: () => undefined,
 }
 
 export const AppContext = React.createContext(defaultContextValue)

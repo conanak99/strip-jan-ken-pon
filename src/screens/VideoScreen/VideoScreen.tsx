@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-
-import {ActionType} from '../../model'
 import {AppContext} from '../../context'
+import {ActionType} from '../../model'
 
 const ButtonContainer = styled.div`
     position: absolute;

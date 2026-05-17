@@ -35,22 +35,20 @@ export const Video = ({play, videoNumber, onVideoEnded}: Props) => {
     const videoRef = React.useRef<HTMLVideoElement | null>(null)
 
     React.useEffect(() => {
+        if (!play) return
         const video = videoRef.current
         if (video) {
-            console.log({video})
             video.currentTime = 0
-            // Later, sound might not work on Safari mobile due to permission
-            // Dunno why it can work now, lol
             video.muted = false
         }
-    }, [play, videoRef])
+    }, [play])
 
     if (!play) {
-        return <Preview src={`/images/preview_${videoNumber}.jpg`} />
+        return <Preview src={`/images/preview_${videoNumber}.jpg`} alt={`preview ${videoNumber}`} />
     }
 
     return (
-        <StyledVideo ref={videoRef as any} onEnded={onVideoEnded} playsInline autoPlay muted>
+        <StyledVideo ref={videoRef} onEnded={onVideoEnded} playsInline autoPlay muted>
             <source src={`/videos/${videoNumber}.mp4`} type="video/mp4" />
         </StyledVideo>
     )
